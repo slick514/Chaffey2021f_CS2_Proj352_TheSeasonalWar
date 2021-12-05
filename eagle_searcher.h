@@ -4,7 +4,7 @@
 
 #ifndef CHAFFEY2021F_CS2_PROJ352_THESEASONALWAR_EAGLE_SEARCHER_H
 #define CHAFFEY2021F_CS2_PROJ352_THESEASONALWAR_EAGLE_SEARCHER_H
-
+#include <vector>
 /**
  * This class will take a square array of values (states) and the size of the array
  * It will search that array and provide the resulting number of "eagles"
@@ -20,50 +20,59 @@
 class EagleSearcher {
 public:
     /**
-     * possible grid-states
+     * possible pGrid-states
      */
     enum state{
-        empty = 0,
-        eagle = 1,
-        searched = 2
+        eagle = '1',
+        searched = '2'
     };
 
     /**
-     * @param grid The square-array to be searched. This array is altered/consumed in the process of searching.
-     * @param size The size of the square-array to be searched
+     * @param search_grid The square-array to be searched. This array is altered/consumed in the process of searching.
      */
-    EagleSearcher(EagleSearcher::state** &grid, short size);
-    short get_number_of_eagles_found() const { return found_eagles;}
+    void search(std::vector<std::vector<char>> &search_grid);
+
+    /**
+     * @returns the number of "eagles" found in the search
+     */
+    int get_number_of_eagles_found() const { return found_eagles;}
+
+    /**
+     *
+     */
+     void set_searched(int row, int col);
+
 private:
     /**
-     * Searches the grid for eagles (1)s and records the number of eagles found in found_eagles
+     * Searches the pGrid for eagles (1)s and records the number of eagles found in found_eagles
      */
     void find_eagles();
 
     /**
-     * The number of eagles found in the grid
+     * The number of eagles found in the pGrid
      */
-    short found_eagles = 0;
+    int found_eagles = 0;
 
     /**
      * The grid (square-array) to search (grid is consumed in the process)
+     * Tried doing this with arrays, but couldn't figure out how to pass in a multi-variable array. *shrugs*
      */
-    EagleSearcher::state** grid;
+     std::vector<std::vector<char>> grid;
 
     /**
-     * The size of one side of the grid (which is a square-array)
+     * The size of one side of the pGrid (which is a square-array)
      */
-    short size;
+    int size;
 
     /**
-     * Searches the grid for any "eagles" (1's) that share a corner with the cell at grid[row][col]
+     * Searches the pGrid for any "eagles" (1's) that share a corner with the cell at pGrid[row][col]
      * Marks all searched squares as "searched"
      * Recursively calls itself upon encountering any other "eagle" cells
      * DOES NOT ITERATE found_eagles
-     * @param row the row of the central grid-square
-     * @param col the column of the central grid-square
+     * @param row the row of the central pGrid-square
+     * @param col the column of the central pGrid-square
      */
-    void do_depth_search(short row, short col);
+    void do_depth_search(int row, int col);
 };
 
 
