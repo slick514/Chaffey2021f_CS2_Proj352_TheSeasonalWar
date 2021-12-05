@@ -1,0 +1,2 @@
+language = "cpp"
+run = "g++ *.cpp -o seasonal_war.exe && ./seasonal_war.exe"
