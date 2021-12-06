@@ -4,15 +4,19 @@
 
 #include "eagle_searcher.h"
 #include <vector>
+#include <iostream>
+
 using namespace std;
 
 
 void EagleSearcher::find_eagles() {
-    for(int i = 0; i < this->size; i++){
-        for(int j = 0; j < this->size; j++){
+    found_eagles = 0;
+    for(int i = 0; i < size; i++){
+        for(int j = 0; j < size; j++){
             if(grid.at(i).at(j) == eagle) {
-                this->found_eagles++;
+                found_eagles++;
                 do_depth_search(i, j);
+                //print_grid();
             }else set_searched(i, j);
         }
     }
@@ -44,7 +48,18 @@ void EagleSearcher::set_searched(int row, int col) {
 }
 
 void EagleSearcher::search(vector<vector<char>> &search_grid) {
-    this->size = (int)search_grid.size();
-    this->grid = search_grid;
+    size = (int)search_grid.size();
+    grid = search_grid;
+    print_grid();
     find_eagles();
+}
+
+void EagleSearcher::print_grid() {
+    cout << endl;
+    for(auto & i : grid){
+        for(int j = 0; j < grid.size(); j++){
+            cout << i.at(j);
+        }
+        cout << endl;
+    }
 }

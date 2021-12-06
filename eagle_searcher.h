@@ -73,6 +73,12 @@ private:
      * @param col the column of the central pGrid-square
      */
     void do_depth_search(int row, int col);
+
+    /**
+     * Prints a grid to stdout.
+     * @param grid_to_print
+     */
+    void print_grid();
 };
 
 

@@ -2,8 +2,8 @@
 #include <fstream>
 #include "eagle_searcher.h"
 
-static const char *const INPUT_FILEPATH = "./input.txt";
-static const char *const OUTPUT_FILEPATH = "./output.txt";
+static const char *const INPUT_FILEPATH = "input.txt";
+static const char *const OUTPUT_FILEPATH = "output.txt";
 
 void open_filestreams(std::ifstream &input_fstream, std::ofstream &output_fstream);
 void close_filestreams(std::ifstream &input_fstream, std::ofstream &output_fstream);
@@ -26,17 +26,19 @@ using namespace std;
 
 int main() {
     int grid_count = 0;
+    int size;
     ifstream input_fstream;
     ofstream output_fstream;
     EagleSearcher searcher;
     string input_line;
+    vector<vector<char>> grid;
 
     open_filestreams(input_fstream, output_fstream);
 
     while(getline(input_fstream, input_line)){
         grid_count++;
-        int size = (int)stoi(input_line);
-        vector<vector<char>> grid = generate_grid(size, input_fstream);
+        size = (int)stoi(input_line);
+        grid = generate_grid(size, input_fstream);
         searcher.search(grid);
         write_output(grid_count, output_fstream, searcher.get_number_of_eagles_found());
     }
