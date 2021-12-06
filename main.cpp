@@ -16,7 +16,7 @@ using namespace std;
  * See attached description: p352.pdf
  */
 int main() {
-    // ---- Variable Instantiation ----
+    // ---- Begin of Variable Instantiation ----
     ifstream input_fstream; // input stream to bring info from input file
     ofstream output_fstream; // output stream to write info to the output file
     int grid_count = 0; // keeps track of the number of grids/arrays that have been parsed/analyzed
@@ -25,7 +25,7 @@ int main() {
     string input_line; // will hold each line as it is read in from the input stream
     struct EagleSearcher::eagle_grid grid; // will hold each parsed data_structure
     int found_eagles; // will hold the number of found eagles for each iteration.
-    //---- End Variable Instantiation ----
+    //---- End of Variable Instantiation ----
 
     open_filestreams(input_fstream, output_fstream); // opens both file-streams
 
