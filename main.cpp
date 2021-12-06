@@ -46,20 +46,31 @@ int main() {
 }
 
 vector<vector<char>> generate_grid(int size, ifstream &input_fstream) {
-    string line; // line to be read in
+
     vector<vector<char>> grid; // the grid that will be populated
+    grid.reserve(size); // set the size of the grid
+
+    // add "size" number of rows to the grid
+    for( int i = 0; i < size; i++){
+        vector<char> row = read_in_row(size, input_fstream); // populate a row
+        grid.push_back(row); // add the row to the end of the grid that is being formed
+    }
+
+    return grid;
+}
+
+vector<char> read_in_row(int size, ifstream &input_fstream) {
     vector<char> row; // a row that will be populated
     row.reserve(size); // set the size of each row
-    grid.reserve(size); // set the size of the grid
-    for( int i = 0; i < size; i++){
-        row.clear(); // clear out the row
-        getline(input_fstream, line); // read in the next line (row) of text
-        for(int j = 0; j < size; j++){
-            row.push_back(line[j]);
-        }
-        grid.push_back(row);
+    string line; // line to be read in
+    getline(input_fstream, line); // read in the next line (row) of text
+
+    // populate the row from the line of input
+    for(int j = 0; j < size; j++){
+        row.push_back(line[j]);
     }
-    return grid;
+
+    return row;
 }
 
 void write_output(int grid_number, ostream &output_stream, int number_of_eagles) {
