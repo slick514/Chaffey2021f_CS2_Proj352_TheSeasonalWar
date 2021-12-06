@@ -4,6 +4,9 @@
 
 #ifndef CHAFFEY2021F_CS2_PROJ352_THESEASONALWAR_MAIN_H
 #define CHAFFEY2021F_CS2_PROJ352_THESEASONALWAR_MAIN_H
+
+#include <ostream>
+
 /**
  * Opens the input and output filestreams
  * @param input_fstream
@@ -21,10 +24,10 @@ void close_filestreams(std::ifstream &input_fstream, std::ofstream &output_fstre
 /**
  * Writes the result of a search to the output file
  * @param grid_number
- * @param output_fstream
+ * @param output_stream
  * @param number_of_eagles
  */
-void write_output(int grid_number, std::ofstream &output_fstream, int number_of_eagles);
+void write_output(int grid_number, std::basic_ostream<char> &output_stream, int number_of_eagles);
 
 /**
  * Creates a square grid (vectors) based on file input.

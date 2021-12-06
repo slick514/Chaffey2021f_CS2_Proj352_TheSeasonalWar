@@ -37,6 +37,7 @@ int main() {
         grid = generate_grid(size, input_fstream);
         searcher.search(grid);
         write_output(grid_count, output_fstream, searcher.get_number_of_eagles_found());
+        write_output(grid_count, cout, searcher.get_number_of_eagles_found());
     }
     close_filestreams(input_fstream, output_fstream);
     return 0;
@@ -58,9 +59,9 @@ vector<vector<char>> generate_grid(int size, ifstream &input_fstream) {
     return grid;
 }
 
-void write_output(int grid_number, ofstream &output_fstream, int number_of_eagles) {
-    output_fstream << "Image number " << grid_number << " contains " ;
-    output_fstream << number_of_eagles << " war eagle" << (number_of_eagles == 1 ? "" : "s") << "." << endl;
+void write_output(int grid_number, ostream &output_stream, int number_of_eagles) {
+    output_stream << "Image number " << grid_number << " contains " ;
+    output_stream << number_of_eagles << " war eagle" << ( number_of_eagles == 1 ? "" : "s") << "." << endl;
 }
 
 void close_filestreams(ifstream &input_fstream, ofstream &output_fstream) {
