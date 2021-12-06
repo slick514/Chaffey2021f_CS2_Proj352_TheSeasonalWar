@@ -20,7 +20,7 @@ int main() {
     ifstream input_fstream; // input stream to bring info from input file
     ofstream output_fstream; // output stream to write info to the output file
     int grid_count = 0; // keeps track of the number of grids/arrays that have been parsed/analyzed
-    int size; // will hold the size (side-length) of each square-data_structure
+    int size; // will hold the size (side-length) of each square-data_structure (Max = 25)
     EagleSearcher searcher; // will do the lifting for data_structure analysis
     string input_line; // will hold each line as it is read in from the input stream
     struct EagleSearcher::eagle_grid grid; // will hold each parsed data_structure
@@ -31,9 +31,9 @@ int main() {
 
     while(getline(input_fstream, input_line)){ // while there are more lines of input...
         grid_count++; // iterate the grid/array-count.
-        size = (int)stoi(input_line); // read in the size of the subsequent data_structure. (Max characters: 25)
+        size = (int)stoi(input_line); // read in the size of the subsequent square (size x size) array.
 
-        // create a grid/array from the next "size" lines of input
+        // create a square grid/array from the next "size" lines of input
         grid = EagleSearcher::generate_grid(size, input_fstream);
 
         found_eagles = searcher.search(grid); // search the grid for "eagles"
