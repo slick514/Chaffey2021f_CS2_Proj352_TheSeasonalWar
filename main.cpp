@@ -63,7 +63,8 @@ vector<vector<char>> generate_grid(int size, ifstream &input_fstream) {
 }
 
 void write_output(int grid_number, ofstream &output_fstream, int number_of_eagles) {
-    output_fstream << "Image number " << grid_number << " contains " << number_of_eagles << " war eagles" << endl;
+    output_fstream << "Image number " << grid_number << " contains " ;
+    output_fstream << number_of_eagles << " war eagle" << (number_of_eagles == 1 ? "" : "s") << "." << endl;
 }
 
 void close_filestreams(ifstream &input_fstream, ofstream &output_fstream) {
