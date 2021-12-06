@@ -1,29 +1,25 @@
 #include <iostream>
 #include <fstream>
 #include "eagle_searcher.h"
+#include "main.h"
 
-static const char *const INPUT_FILEPATH = "input.txt";
-static const char *const OUTPUT_FILEPATH = "output.txt";
-
-void open_filestreams(std::ifstream &input_fstream, std::ofstream &output_fstream);
-void close_filestreams(std::ifstream &input_fstream, std::ofstream &output_fstream);
-void write_output(int grid_number, std::ofstream &output_fstream, int number_of_eagles);
-std::vector<std::vector<char>> generate_grid(int size, std::ifstream &input_fstream);
+static const char *const INPUT_FILEPATH = "./input.txt";
+static const char *const OUTPUT_FILEPATH = "./output.txt";
 
 using namespace std;
-/*
+
+/**
  * P352: "The seasonal war"
  * See attached description: p352.pdf
  *
  * Algorithm:
  *  Read in first line
     Parse array size, "n"
-    Create 2D, square-array of "n x n" size, from the next "n" lines of file input
-    Create an EagleSearcher to search the array
+    Create 2D, square grid consisting of vectors of "n x n" size, from the next "n" lines of file input
+    Call an EagleSearcher to search the grid
     Print result of array search
-    If EOF is not reached, read in the next array and handle in similar fashion
+    If EOF is not reached, read in the next "section" and handle in similar fashion
  */
-
 int main() {
     int grid_count = 0;
     int size;

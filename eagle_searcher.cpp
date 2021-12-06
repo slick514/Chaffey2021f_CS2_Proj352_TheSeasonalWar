@@ -50,7 +50,7 @@ void EagleSearcher::set_searched(int row, int col) {
 void EagleSearcher::search(vector<vector<char>> &search_grid) {
     size = (int)search_grid.size();
     grid = search_grid;
-    print_grid();
+    //print_grid();
     find_eagles();
 }
 
