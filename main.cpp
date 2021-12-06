@@ -16,7 +16,7 @@ using namespace std;
  * See attached description: p352.pdf
  */
 int main() {
-    // Variable Instantiation
+    // ---- Variable Instantiation ----
     ifstream input_fstream; // input stream to bring info from input file
     ofstream output_fstream; // output stream to write info to the output file
     int grid_count = 0; // keeps track of the number of grids/arrays that have been parsed/analyzed
