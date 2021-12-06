@@ -48,10 +48,12 @@ int main() {
     return 0;
 }
 
+
 void close_filestreams(ifstream &input_fstream, ofstream &output_fstream) {
     input_fstream.close();
     output_fstream.close();
 }
+
 
 void open_filestreams(ifstream &input_fstream, ofstream &output_fstream) {
     input_fstream.open(INPUT_FILEPATH);

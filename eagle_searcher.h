@@ -7,8 +7,6 @@
 #include <vector>
 #include <ostream>
 
-
-
 /**
  * This class will take a square data_structure of values (states) and the size of the data_structure
  * It will search that data_structure and provide the resulting number of "eagles"
@@ -54,11 +52,20 @@ public:
 
 private:
     /**
-     * @param size the length of the row
-     * @param input_fstream filestream to read from
-     * @return a vector of chars, representing a row of input
+     * The number of eagles found in the data_structure
      */
-    static std::vector<char> read_in_row(int size, std::istream &input_fstream);
+    int found_eagles = 0;
+
+    /**
+     * The data_structure (square-data_structure) to search (data_structure is consumed in the process)
+     * Tried doing this with arrays, but couldn't figure out how to pass in a multi-variable data_structure. *shrugs*
+     */
+    struct eagle_grid grid;
+
+    /**
+     * The size of one side of the data_structure (which is a square-data_structure)
+     */
+    int size = 0;
 
     /**
      * possible data_structure-states
@@ -69,31 +76,22 @@ private:
     };
 
     /**
+     * @param size the length of the row
+     * @param input_fstream filestream to read from
+     * @return a vector of chars, representing a row of input
+     */
+    static std::vector<char> read_in_row(int size, std::istream &input_fstream);
+
+    /**
      * @row the row of the cell to be marked as searched
      * @col the column of the cell to be marked as searched
      */
     void set_searched(int row, int col);
-    
+
     /**
      * Searches the data_structure for eagles (1)s and records the number of eagles found in found_eagles
      */
     void find_eagles();
-
-    /**
-     * The number of eagles found in the data_structure
-     */
-    int found_eagles = 0;
-
-    /**
-     * The data_structure (square-data_structure) to search (data_structure is consumed in the process)
-     * Tried doing this with arrays, but couldn't figure out how to pass in a multi-variable data_structure. *shrugs*
-     */
-     struct eagle_grid grid;
-
-    /**
-     * The size of one side of the data_structure (which is a square-data_structure)
-     */
-    int size = 0;
 
     /**
      * Searches the data_structure for any "eagles" (1's) that share a corner with the cell at data_structure[row][col]
@@ -111,6 +109,5 @@ private:
      */
     __attribute__((unused)) void print_grid();
 };
-
 
 #endif //CHAFFEY2021F_CS2_PROJ352_THESEASONALWAR_EAGLE_SEARCHER_H

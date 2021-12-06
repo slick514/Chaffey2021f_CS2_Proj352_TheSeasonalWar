@@ -21,6 +21,7 @@ void EagleSearcher::find_eagles() {
     }
 }
 
+
 void EagleSearcher::do_depth_search(int row, int col) {
     set_searched(row, col);
 
@@ -55,6 +56,7 @@ int EagleSearcher::search(const struct eagle_grid &search_grid) {
     return found_eagles;
 }
 
+
 __attribute__((unused)) void EagleSearcher::print_grid() {
     vector<vector<char>> arr = grid.data_structure;
     cout << endl;
@@ -66,10 +68,12 @@ __attribute__((unused)) void EagleSearcher::print_grid() {
     }
 }
 
+
 void EagleSearcher::write_output(int grid_number, ostream &output_stream, int number_of_eagles) {
     output_stream << "Image number " << grid_number << " contains " ;
     output_stream << number_of_eagles << " war eagle" << ( number_of_eagles == 1 ? "" : "s") << "." << endl;
 }
+
 
 EagleSearcher::eagle_grid EagleSearcher::generate_grid(int size, istream &input_fstream) {
 
@@ -86,6 +90,7 @@ EagleSearcher::eagle_grid EagleSearcher::generate_grid(int size, istream &input_
     return g;
 }
 
+
 vector<char> EagleSearcher::read_in_row(int size, istream &input_fstream) {
     vector<char> row; // a row that will be populated
     row.reserve(size); // set the size of each row
@@ -96,6 +101,5 @@ vector<char> EagleSearcher::read_in_row(int size, istream &input_fstream) {
     for(int j = 0; j < size; j++){
         row.push_back(line[j]);
     }
-
     return row;
 }
