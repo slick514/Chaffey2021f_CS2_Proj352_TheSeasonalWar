@@ -5,12 +5,16 @@
 #ifndef CHAFFEY2021F_CS2_PROJ352_THESEASONALWAR_EAGLE_SEARCHER_H
 #define CHAFFEY2021F_CS2_PROJ352_THESEASONALWAR_EAGLE_SEARCHER_H
 #include <vector>
+#include <ostream>
+
+
+
 /**
- * This class will take a square array of values (states) and the size of the array
- * It will search that array and provide the resulting number of "eagles"
+ * This class will take a square data_structure of values (states) and the size of the data_structure
+ * It will search that data_structure and provide the resulting number of "eagles"
  *
  * Things to do:
- * Iterate through array
+ * Iterate through data_structure
    Mark each "cell" as handled once it has been viewed
    If a cell is a "1" (eagle):
         Iterate the count
@@ -20,7 +24,44 @@
 class EagleSearcher {
 public:
     /**
-     * possible pGrid-states
+     * Encapsulates inner data-structure to preclude implementation dependency
+     */
+    struct eagle_grid{
+        std::vector<std::vector<char>> data_structure;
+    };
+
+    /**
+     * @param search_grid The square-data_structure to be searched.
+     * @return the number of "eagles" located
+     */
+    int search(const struct eagle_grid &search_grid);
+
+    /**
+     * Writes the result of a search to the output file
+     * @param grid_number
+     * @param output_stream
+     * @param number_of_eagles
+     */
+    static void write_output(int grid_number, std::basic_ostream<char> &output_stream, int number_of_eagles);
+
+    /**
+     * @param size The number of lines to be read in, which must all by of length "size".
+     * @param input_fstream Depends on the input stream's next "size" lines comprising a square-matrix of side-length
+     * "size"
+     * @return a data_structure comprised of a vector of char vectors, with all vectors of length "size"
+     */
+    static eagle_grid generate_grid(int size, std::istream &input_fstream);
+
+private:
+    /**
+     * @param size the length of the row
+     * @param input_fstream filestream to read from
+     * @return a vector of chars, representing a row of input
+     */
+    static std::vector<char> read_in_row(int size, std::istream &input_fstream);
+
+    /**
+     * possible data_structure-states
      */
     enum state{
         eagle = '1',
@@ -28,57 +69,47 @@ public:
     };
 
     /**
-     * @param search_grid The square-array to be searched. This array is altered/consumed in the process of searching.
+     * @row the row of the cell to be marked as searched
+     * @col the column of the cell to be marked as searched
      */
-    void search(std::vector<std::vector<char>> &search_grid);
-
+    void set_searched(int row, int col);
+    
     /**
-     * @returns the number of "eagles" found in the search
-     */
-    int get_number_of_eagles_found() const { return found_eagles;}
-
-    /**
-     *
-     */
-     void set_searched(int row, int col);
-
-private:
-    /**
-     * Searches the pGrid for eagles (1)s and records the number of eagles found in found_eagles
+     * Searches the data_structure for eagles (1)s and records the number of eagles found in found_eagles
      */
     void find_eagles();
 
     /**
-     * The number of eagles found in the pGrid
+     * The number of eagles found in the data_structure
      */
     int found_eagles = 0;
 
     /**
-     * The grid (square-array) to search (grid is consumed in the process)
-     * Tried doing this with arrays, but couldn't figure out how to pass in a multi-variable array. *shrugs*
+     * The data_structure (square-data_structure) to search (data_structure is consumed in the process)
+     * Tried doing this with arrays, but couldn't figure out how to pass in a multi-variable data_structure. *shrugs*
      */
-     std::vector<std::vector<char>> grid;
+     struct eagle_grid grid;
 
     /**
-     * The size of one side of the pGrid (which is a square-array)
+     * The size of one side of the data_structure (which is a square-data_structure)
      */
-    int size;
+    int size = 0;
 
     /**
-     * Searches the pGrid for any "eagles" (1's) that share a corner with the cell at pGrid[row][col]
+     * Searches the data_structure for any "eagles" (1's) that share a corner with the cell at data_structure[row][col]
      * Marks all searched squares as "searched"
      * Recursively calls itself upon encountering any other "eagle" cells
      * DOES NOT ITERATE found_eagles
-     * @param row the row of the central pGrid-square
-     * @param col the column of the central pGrid-square
+     * @param row the row of the central data_structure-square
+     * @param col the column of the central data_structure-square
      */
     void do_depth_search(int row, int col);
 
     /**
-     * Prints a grid to stdout.
+     * Prints a data_structure to stdout.
      * @param grid_to_print
      */
-    void print_grid();
+    __attribute__((unused)) void print_grid();
 };
 
 
