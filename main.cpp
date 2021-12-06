@@ -49,13 +49,13 @@ int main() {
 }
 
 
-void close_filestreams(ifstream &input_fstream, ofstream &output_fstream) {
-    input_fstream.close();
-    output_fstream.close();
+void close_filestreams(std::ifstream &in_stream, std::ofstream &out_stream) {
+    in_stream.close();
+    out_stream.close();
 }
 
 
-void open_filestreams(ifstream &input_fstream, ofstream &output_fstream) {
-    input_fstream.open(INPUT_FILEPATH);
-    output_fstream.open(OUTPUT_FILEPATH);
+void open_filestreams(std::ifstream &in_stream, std::ofstream &out_stream) {
+    in_stream.open(INPUT_FILEPATH);
+    out_stream.open(OUTPUT_FILEPATH);
 }

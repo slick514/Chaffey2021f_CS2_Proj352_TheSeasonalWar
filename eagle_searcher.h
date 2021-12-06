@@ -8,11 +8,11 @@
 #include <ostream>
 
 /**
- * This class will take a square data_structure of values (states) and the size of the data_structure
- * It will search that data_structure and provide the resulting number of "eagles"
+ * This class will take a square grid of values (states) and the size of the grid
+ * It will search that grid and provide the resulting number of "eagles"
  *
  * Things to do:
- * Iterate through data_structure
+ * Iterate through grid
    Mark each "cell" as handled once it has been viewed
    If a cell is a "1" (eagle):
         Iterate the count
@@ -29,46 +29,46 @@ public:
     };
 
     /**
-     * @param search_grid The square-data_structure to be searched.
+     * @param search_grid The square-grid to be searched.
      * @return the number of "eagles" located
      */
     int search(const struct eagle_grid &search_grid);
 
     /**
-     * Writes the result of a search to the output file
-     * @param grid_number
-     * @param output_stream
-     * @param number_of_eagles
+     * Writes the result of a search to the output stream
+     * @param grid_number The grid number to be displayed
+     * @param out_stream The output stream
+     * @param number_of_eagles The number of "eagles" that were found in the grid
      */
-    static void write_output(int grid_number, std::basic_ostream<char> &output_stream, int number_of_eagles);
+    static void write_output(int grid_number, std::basic_ostream<char> &out_stream, int number_of_eagles);
 
     /**
      * @param size The number of lines to be read in, which must all by of length "size".
      * @param input_fstream Depends on the input stream's next "size" lines comprising a square-matrix of side-length
      * "size"
-     * @return a data_structure comprised of a vector of char vectors, with all vectors of length "size"
+     * @return a "square" grid comprised of a vector of char vectors, with all vectors of length "size"
      */
     static eagle_grid generate_grid(int size, std::istream &input_fstream);
 
 private:
     /**
-     * The number of eagles found in the data_structure
+     * The number of eagles found in the grid
      */
     int found_eagles = 0;
 
     /**
-     * The data_structure (square-data_structure) to search (data_structure is consumed in the process)
-     * Tried doing this with arrays, but couldn't figure out how to pass in a multi-variable data_structure. *shrugs*
+     * The grid (square-data_structure) to search.
+     * Tried doing this with arrays, but couldn't figure out how to pass in a multi-variable array. *shrugs*
      */
     struct eagle_grid grid;
 
     /**
-     * The size of one side of the data_structure (which is a square-data_structure)
+     * The size of one side of the (square) grid
      */
     int size = 0;
 
     /**
-     * possible data_structure-states
+     * possible grid-states
      */
     enum state{
         eagle = '1',
@@ -76,9 +76,10 @@ private:
     };
 
     /**
+     * populates a list vector of characters from the next line of input
      * @param size the length of the row
      * @param input_fstream filestream to read from
-     * @return a vector of chars, representing a row of input
+     * @return a vector of chars of length "size", representing a row of input
      */
     static std::vector<char> read_in_row(int size, std::istream &input_fstream);
 
@@ -89,22 +90,22 @@ private:
     void set_searched(int row, int col);
 
     /**
-     * Searches the data_structure for eagles (1)s and records the number of eagles found in found_eagles
+     * Searches the grid for eagles (1)s and records the number of eagles found in this->found_eagles
      */
     void find_eagles();
 
     /**
-     * Searches the data_structure for any "eagles" (1's) that share a corner with the cell at data_structure[row][col]
+     * Searches the grid for any "eagles" (1's) that share a corner with the cell at grid[row][col]
      * Marks all searched squares as "searched"
      * Recursively calls itself upon encountering any other "eagle" cells
      * DOES NOT ITERATE found_eagles
-     * @param row the row of the central data_structure-square
-     * @param col the column of the central data_structure-square
+     * @param row the row of the central grid-square
+     * @param col the column of the central grid-square
      */
     void do_depth_search(int row, int col);
 
     /**
-     * Prints a data_structure to stdout.
+     * Prints a grid to stdout.
      * @param grid_to_print
      */
     __attribute__((unused)) void print_grid();

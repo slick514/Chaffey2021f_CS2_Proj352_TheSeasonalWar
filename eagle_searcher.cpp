@@ -69,9 +69,9 @@ __attribute__((unused)) void EagleSearcher::print_grid() {
 }
 
 
-void EagleSearcher::write_output(int grid_number, ostream &output_stream, int number_of_eagles) {
-    output_stream << "Image number " << grid_number << " contains " ;
-    output_stream << number_of_eagles << " war eagle" << ( number_of_eagles == 1 ? "" : "s") << "." << endl;
+void EagleSearcher::write_output(int grid_number, ostream &out_stream, int number_of_eagles) {
+    out_stream << "Image number " << grid_number << " contains " ;
+    out_stream << number_of_eagles << " war eagle" << ( number_of_eagles == 1 ? "" : "s") << "." << endl;
 }
 
 
