@@ -21,36 +21,39 @@ using namespace std;
     If EOF is not reached, read in the next "section" and handle in similar fashion
  */
 int main() {
-    int grid_count = 0;
-    int size;
-    ifstream input_fstream;
-    ofstream output_fstream;
-    EagleSearcher searcher;
-    string input_line;
-    vector<vector<char>> grid;
+    int grid_count = 0; // keeps track of the number of grids that have been parsed/analyzed
+    int size; // will hold the size (side-length) of each square-grid
+    ifstream input_fstream; // input stream to bring info from input file
+    ofstream output_fstream; // output stream to write info to the output file
+    EagleSearcher searcher; // will do the lifting for grid analysis
+    string input_line; // will hold each line as it is read in from the input stream
+    vector<vector<char>> grid; // will hold each parsed grid
 
-    open_filestreams(input_fstream, output_fstream);
+    open_filestreams(input_fstream, output_fstream); // opens both filestreams
 
-    while(getline(input_fstream, input_line)){
-        grid_count++;
-        size = (int)stoi(input_line);
-        grid = generate_grid(size, input_fstream);
-        searcher.search(grid);
+    while(getline(input_fstream, input_line)){ // while there are more lines of input...
+        grid_count++; // iterate the grid count.
+        size = (int)stoi(input_line); // read in the size of the subsequent grid. (Max characters: 25)
+        grid = generate_grid(size, input_fstream); // create a grid from the next "size" lines of input
+        searcher.search(grid); // search the grid for "eagles"
+        // write the output to the output file
         write_output(grid_count, output_fstream, searcher.get_number_of_eagles_found());
+        // write the output to stdout
         write_output(grid_count, cout, searcher.get_number_of_eagles_found());
     }
-    close_filestreams(input_fstream, output_fstream);
+    close_filestreams(input_fstream, output_fstream); // close the input and output filestreams;
     return 0;
 }
 
 vector<vector<char>> generate_grid(int size, ifstream &input_fstream) {
-    string line;
-    vector<vector<char>> grid;
-    grid.reserve(size);
+    string line; // line to be read in
+    vector<vector<char>> grid; // the grid that will be populated
+    vector<char> row; // a row that will be populated
+    row.reserve(size); // set the size of each row
+    grid.reserve(size); // set the size of the grid
     for( int i = 0; i < size; i++){
-        getline(input_fstream, line);
-        vector<char> row;
-        row.reserve(size);
+        row.clear(); // clear out the row
+        getline(input_fstream, line); // read in the next line (row) of text
         for(int j = 0; j < size; j++){
             row.push_back(line[j]);
         }
