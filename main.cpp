@@ -9,8 +9,8 @@ static const char *const OUTPUT_FILEPATH = "./output.txt";
 using namespace std;
 
 /**
- * CHAFFEY COLLEGE FALL 2021; COMPSCI-2; ICPC PROJECT; GROUP 12
- * Group Members: Justin Gries & Christian Flores
+ * CHAFFEY COLLEGE FALL 2021; COMPSCI-2; ICPC PROJECT
+ * Coder: Justin Gries
  * Code link (Repl.it): https://replit.com/@JustinGries/Chaffey2021fCS2Proj352TheSeasonalWar#main.cpp
  * P352: "The seasonal war"
  * See attached description: p352.pdf
